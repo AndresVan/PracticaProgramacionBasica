@@ -27,5 +27,3 @@ function dibujarCirculo(evento){ //Se define la función y llega por parámetro 
 
 //pantalla.onclick = exhibirAlerta;  //Se pasa la función como parámetro a pantalla, es decir que se ejecuta el alert unicamente cuando pasa por onclick
 pantalla.onclick = dibujarCirculo; //Al dar click se activa el evento
-
-
