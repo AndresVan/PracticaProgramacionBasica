@@ -1,7 +1,9 @@
 var pantalla = document.querySelector('canvas');
 var pincel = pantalla.getContext ("2d");
+var color = ["blue","red","yellow"];
+var colorIndice = 0;
 
-pincel.fillStyle = 'grey'; //Se define el color del lienzo
+pincel.fillStyle = 'black'; //Se define el color del lienzo
 pincel.fillRect(0,0,600,400);//Se define el tamaño y ubicación del lienzo
 
 //-------------La función exhibirAlerta se usa para mostrar las coordenadas del puntero -----------//
@@ -17,13 +19,23 @@ function dibujarCirculo(evento){ //Se define la función y llega por parámetro 
     var x = evento.pageX - pantalla.offsetLeft;
     var y = evento.pageY - pantalla.offsetTop;
 
-    pincel.fillStyle="red"; //el método Fillstyle le brinda color al pincel
+    pincel.fillStyle=color[colorIndice]; //el método Fillstyle le brinda color al pincel
     pincel.beginPath();     // con beginPath se da orden de trazado
     pincel.arc(x,y,10,0,2*3.14); //con arc se inicia en pos x y Y con radio y Pi
     pincel.fill(); //Se rellena la figura
     console.log("posición X "+ x +" posición Y "+ y);
-
+    console.log("color " +colorIndice);
 }
 
-//pantalla.onclick = exhibirAlerta;  //Se pasa la función como parámetro a pantalla, es decir que se ejecuta el alert unicamente cuando pasa por onclick
-pantalla.onclick = dibujarCirculo; //Al dar click se activa el evento
+pantalla.onclick = dibujarCirculo; //Al dar click IZQUIERDO se activa el evento
+pantalla.oncontextmenu = cambioColor; // oncontextmenu permite usar el evento del clic DERECHO
+
+//---Cambiocolor permite ir cambiando cíclicamente el valor del índice.
+function cambioColor (){
+    if (colorIndice<color.length-1) {
+        colorIndice++;
+    }else{
+        colorIndice = 0;
+    }
+}
+
