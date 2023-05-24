@@ -75,7 +75,7 @@ function disparo(evento){
         }else{
             mensaje = "manco!";
             alert("Fin del Juego, tu puntería es de " + mensaje);
-            location.reload();
+            location.reload(); //Recarga la página
         }
           
 }
